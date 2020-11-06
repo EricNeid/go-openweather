@@ -62,3 +62,23 @@ func TestDailyForecast(t *testing.T) {
 	test.Ok(t, err)
 	test.Equals(t, "Berlin", data.City.Name)
 }
+
+func TestDailyForecast5(t *testing.T) {
+	// arrange
+	q := NewQueryForCity(readAPIKey(), cityBerlin)
+	// action
+	data, err := q.DailyForecast5()
+	// verify
+	test.Ok(t, err)
+	test.Equals(t, "Berlin", data.City.Name)
+}
+
+func TestDailyForecast5Raw(t *testing.T) {
+	// arrange
+	q := NewQueryForCity(readAPIKey(), cityBerlin)
+	// action
+	data, err := q.DailyForecast5Raw()
+	// verify
+	test.Ok(t, err)
+	test.Assert(t, len(data) > 0, "Empty response received")
+}
